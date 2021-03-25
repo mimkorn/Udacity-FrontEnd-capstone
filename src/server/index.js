@@ -2,10 +2,9 @@ const express = require('express')
 const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 dotenv.config();
-console.log(`Your API key is ${process.env.API_KEY}`);
-const meaningCloudAPI = require('./meaningCloudAPI.js')
+
+const geoNamesAPI = require('./GeoNamesAPI.js')
 
 var path = require('path')
 
@@ -22,12 +21,8 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'))
 })
 
-app.get('/test', function (req, res) {
-    res.send();
-})
-
-app.post('/analyze', async function(req, res) {
-    let result = await meaningCloudAPI.getSentiment(req.body.body)
+app.post('/plan', async function(req, res) {
+    let result = await geoNamesAPI.searchFulltextForGeoInfo(req.body.body)
     res.send(result)
 })
 
