@@ -1,102 +1,186 @@
-body{
-    background: #fffff8;
-    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+body {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0px;
+  background: #fffff8 url("../media/background.jpg") no-repeat fixed center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  color: #353030;
+  font-size: x-small;
 }
 
-#app{
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    height:100vh;
-    background: #5e232d;
-    color: #2abe3e;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
+#app {
+  margin: 8px;
+  display: grid;
+  grid-auto-rows: fit-content(90%);
+  height: 100vh;
+  justify-content: center;
+  grid-gap: 2em;
+  padding-top: 3em;
 }
 
-.holder{
-
+h1 {
+  font-size: large;
 }
 
-.entry{
-    background: rgba(45, 90, 187, 0.4);
+.plans {
+  padding: 2.5em;
+  background: rgba(255, 255, 255, 0.6);
+
+  h1 {
+    margin: 0;
+  }
 }
 
-#entryHolder{
-
+.all_inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
+.weather {
+  padding: 0.05em 1em;
+  background: rgba(255, 255, 255, 0.6)
 }
 
 .headline {
-
-}
-.title{
-
+  margin: 1em;
+  font-size: x-large;
+  width: max-content;
+  border-bottom: #817a76 solid thin;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
-    display:block;
-    font-size: 27px;
+label {
+  display: block;
+  font-size: 1.5em;
 }
 
-input{
-    display:block;
-    height: 60px;
-    width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    border: none;
+p {
+  font-size: 1.5em;
 }
 
-button{
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    border: none;
-    box-shadow: 2px 4px 5px #444;
-}
-h1{
-    font-size: 36px;
+input {
+  height: 2em;
+  width: 80vw;
+  background: #d9dedf;
+  color: #618b8f;
+  font-size: 1.5em;
+  border: none;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; //copied from https://getcssscan.com/css-box-shadow-examples;
+    transition: box-shadow 0.5s ease-in-out;
+  }
 }
 
-textarea{
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
+input[type="date" i] {
+  font-family: inherit;
 }
-/* Reset style for HTML element on active to have no border*/
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
+
+::placeholder {
+  color: #618b8f;
+  opacity: 0.5;
 }
-/* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
-} 
+
+.image {
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+
+  img {
+    width: 100%;
+  }
+}
+
+button {
+  justify-self: center;
+  width: 80vw;
+  height: auto;
+  padding: 0.5em 0;
+  background: #3b4a6b;
+  color: #a2c9ea;
+  font-size: 2em;
+  border: none;
+  box-shadow: 2px 4px 5px #444;
+
+  &:hover {
+    box-shadow:unset;
+    transition: box-shadow 0.5s ease-in-out;
+  }
+}
+
+textarea {
+  background: #22b2da;
+  color: #f0d43a;
+  font-size: 20px;
+}
+
+.invisible, .invisible-before-first-search {
+  display: none
+}
+
+@media (min-width: 826px) {
+  body {
+    align-items: center;
+  }
+
+  .all_inputs {
+    display: flex;
+    flex-direction: row;
+    align-items: unset;
+  }
+
+  button {
+    padding: 0.2em 1.5em;
+    margin: 10px 0;
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .holder {
+    margin: 0 1em;
+  }
+
+  input {
+    width: 18vw;
+  }
+
+  input[type="date" i] {
+    width: auto;
+  }
+
+  #app {
+    justify-content: unset;
+    width: 90vw;
+  }
+
+  .plans {
+    display: grid;
+    grid-template-areas:
+    "image trip-input-info"
+    "image travel-calculation"
+    "image weather";
+  }
+
+  .trip-input-info {
+    grid-area: trip-input-info;
+  }
+
+  .travel-calculation {
+    grid-area: travel-calculation;
+  }
+
+  .weather {
+    grid-area: weather;
+  }
+
+  .invisible-before-first-search.plans {
+    display: none;
+  }
+
+  .image {
+    grid-area: image;
+  }
+}
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");

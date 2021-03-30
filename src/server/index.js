@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 dotenv.config();
 
 const geoNamesAPI = require('./GeoNamesAPI.js')
+const weatherBitsAPI = require('./WeatherBitsAPI.js')
+const pixabayAPI = require('./PixabayAPI.js')
 
-var path = require('path')
+const path = require('path')
 
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}));
@@ -15,15 +17,18 @@ app.use(cors());
 app.use(express.static('dist'))
 app.options('*', cors())
 
-console.log(__dirname)
-
 app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'))
 })
 
 app.post('/plan', async function(req, res) {
-    let result = await geoNamesAPI.searchFulltextForGeoInfo(req.body.body)
-    res.send(result)
+    let results = {}
+    let geoResults = await geoNamesAPI.searchFulltextForGeoInfo(req.body.city)
+    let weatherResults = await weatherBitsAPI.getWeatherFor(geoResults.lat, geoResults.lng, req.body.departureDate)
+    let pixabayResults = await pixabayAPI.fetchSomeImageForEither(req.body.city, geoResults.country)
+    results.weatherResults = weatherResults;
+    results.pixabayResults = pixabayResults;
+    res.send(results)
 })
 
 // designates what port the app will listen to for incoming requests

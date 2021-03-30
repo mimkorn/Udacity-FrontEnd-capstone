@@ -1,4 +1,4 @@
-import { getSentiment } from '../src/server/GeoNamesAPI'
+import { searchFulltextForGeoInfo } from '../src/server/GeoNamesAPI'
 import fetch from 'node-fetch'
 
 jest.mock('node-fetch')

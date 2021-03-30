@@ -7,7 +7,8 @@
     "start": "node dist/server.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack serve --config webpack.dev.js --open",
-    "build-dev-no-run": "webpack --config webpack.dev.js"
+    "build-dev-no-run": "webpack --config webpack.dev.js",
+    "buildnrun": "webpack --config webpack.prod.js && node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "babel-loader": "^8.2.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "date-fns": "^2.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "meaning-cloud": "^1.1.10",
