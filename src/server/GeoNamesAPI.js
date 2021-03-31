@@ -7,6 +7,9 @@ export async function searchFulltextForGeoInfo(searchTerm) {
         let response = await fetch(encodeURI(`${baseUrl}${searchTerm}`));
         let result = await response.json();
         let send = {}
+        if (!result.totalResultsCount) {
+            return {error: 1, reason: "GeoNames API did not return legal response. You might have your API key improperly configured."}
+        }
         if (result.totalResultsCount === 0) {
             return {error: 1, reason: "GeoNames API returned no results."}
         }
