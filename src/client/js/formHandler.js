@@ -29,7 +29,7 @@ function handleSubmit(event) {
 
     unhideFirstTimeHiddenTripStubText();
 
-    postData(`http://192.168.0.118:8081/plan`, {city: cityFromFormInput, departureDate: departureDateFromFormInput})
+    postData(`http://localhost:8081/plan`, {city: cityFromFormInput, departureDate: departureDateFromFormInput})
         .then(function (res) {
             document.getElementById('trip_destination_image').src = `${res.pixabayResults.webformatURL}`
             setInnerHtmlAt('weather_intro', daysBeforeDeparture < 16 ? "Expected weather" : "Typical weather for that day is")
