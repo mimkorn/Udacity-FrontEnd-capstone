@@ -1,5 +1,4 @@
 import fetch from 'node-fetch'
-//TODO try removing export keyword at the baseURL
 export const baseUrl = `http://api.geonames.org/search?type=json&maxRows=3&username=${process.env.GEO_API_USER}&q=`
 
 // latitude, longitude, country,

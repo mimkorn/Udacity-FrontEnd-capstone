@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { differenceInCalendarDays, format, getMonth, getDate} from 'date-fns'
+import { differenceInCalendarDays, format } from 'date-fns'
 
 
 const forecast16daysApi = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHERBIT_API_KEY}`
